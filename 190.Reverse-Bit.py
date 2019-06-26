@@ -7,3 +7,5 @@ class Solution:
             res <<=1
             res |= (n>>i) & 1
         return res
+
+        
