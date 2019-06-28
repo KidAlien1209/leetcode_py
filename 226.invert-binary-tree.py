@@ -49,25 +49,40 @@
 #         self.left = None
 #         self.right = None
 
+# recursive
+#class Solution:
+#    def invertTree(self, root: TreeNode) -> TreeNode:
+#        if root == None:
+#            return None
+#        self.invertOps(root)
+#        return root
+#        
+#    def invertOps(self, root):
+#        if root != None:
+#            temp = root.right
+#            root.right = root.left
+#            root.left = temp
+#        if root.left:
+#            self.invertOps(root.left)
+#        if root.right:
+#            self.invertOps(root.right)
+#        
+
+# iterative
 class Solution:
     def invertTree(self, root: TreeNode) -> TreeNode:
-        if root==None:
+        if root == None:
             return None
-
-
-    def inStack(self, stack, res):
-        while stack!= []:
-            item = stack.pop()
-            res.append(item)
-            if item.left!= None and item.right!=None:
-                stack.append(item.right)
-                stack.append(item.left) 
-
-    def outStack(self, root, stack):
-        root = stack.pop(0)
-        while stack!=[]:
-            root.left=stack.pop()
-
-
-
-
+        stack=[root]
+        #stack.append(root)
+        while stack != []:
+            item = stack.pop(0)
+            left = item.left
+            if left!=None:
+                stack.append(left)
+            right = item.right
+            if right !=None:
+                stack.append(right)
+            item.left = right
+            item.right = left
+        return root
